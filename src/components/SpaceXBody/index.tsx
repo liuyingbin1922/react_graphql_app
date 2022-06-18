@@ -1,14 +1,20 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_SPACEX_DATA } from '../../constant';
-import { LaunchesPastType } from '../../type';
+import { QUERY_SPACEX_DATA, QUERY_SPACEX_LAUNCH_NEXT } from '../../constant';
+import { LaunchesPastType, LaunchesNextType } from '../../type';
 import { Table, Tag } from 'antd';
 import {resoleVideo} from '../../utils';
+import SpaceXNextCom from '../SpaceXNextCom';
 import './index.css';
 
+interface showType {
+    showTag: string;
+}
 
-function SpaceXComponent() {
+function SpaceXComponent(props: showType) {
+    const { showTag } = props;
     const { data } = useQuery(QUERY_SPACEX_DATA) as LaunchesPastType;
-    
+    const querydata = useQuery(QUERY_SPACEX_LAUNCH_NEXT) as LaunchesNextType;
+
     const columns = [
         {
             title: 'Id',
@@ -108,7 +114,6 @@ function SpaceXComponent() {
     ];
 
     const dataSource:any[] = [];
-    console.log('data',data)
     data?.launchesPast && data?.launchesPast.forEach(item => {
         dataSource.push({
             mission_name: item.mission_name,
@@ -125,7 +130,11 @@ function SpaceXComponent() {
     })
 
     return (
-        <Table dataSource={dataSource} columns={columns} tableLayout="fixed" bordered/>
+        showTag ==='past' ? <Table dataSource={dataSource} columns={columns} tableLayout="fixed"
+        pagination={{
+            defaultCurrent:1,
+            pageSize:2
+        }} bordered/> : <SpaceXNextCom data={querydata.data.launchNext}/>
     );
 }
 
