@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import React , {useState} from 'react';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 
 function App() {
     const [state , setState] = useState<string>('past'); 
