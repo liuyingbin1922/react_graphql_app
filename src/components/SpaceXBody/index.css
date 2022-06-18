@@ -1,0 +1,14 @@
+.img {
+    width: 40px;
+    height: 40px;
+}
+/* .name , .img , .home_port {
+    border-bottom: 1px solid #999;
+} */
+.wrapper {
+    border-bottom: 1px solid #999;
+}
+
+.spanStyle {
+    color:coral;
+}
