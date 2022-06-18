@@ -1,6 +1,6 @@
 import './index.css';
 import SpaceXComponent from '../../components/SpaceXBody';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import React from 'react';
@@ -8,12 +8,8 @@ import 'antd/dist/antd.css';
 
 const { Header, Content, Sider } = Layout;
 
-const items1: MenuProps['items'] = ['1', '2', '3'].map(key => ({
-  key,
-  label: `nav ${key}`,
-}));
 
-const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
+const items2: MenuProps['items'] = [UserOutlined].map(
   (icon, index) => {
     const key = String(index + 1);
 
@@ -22,7 +18,7 @@ const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOu
       icon: React.createElement(icon),
       label: `subnav ${key}`,
 
-      children: new Array(4).fill(null).map((_, j) => {
+      children: new Array(2).fill(null).map((_, j) => {
         const subKey = index * 4 + j + 1;
         return {
           key: subKey,
@@ -39,7 +35,6 @@ function App() {
       <Layout>
         <Header className="header">
           <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
         </Header>
         <Layout>
         <Sider width={200} className="site-layout-background">

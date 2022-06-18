@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_SPACEX_DATA } from '../../constant';
 import { LaunchesPastType } from '../../type';
 import { Table, Tag } from 'antd';
+import {resoleVideo} from '../../utils';
 import './index.css';
 
 
@@ -57,6 +58,7 @@ function SpaceXComponent() {
         {
             title:'Link',
             dataIndex:'links',
+            width:'220px',
             render:(record:any) => {
                 return (
                     <div>
@@ -64,7 +66,12 @@ function SpaceXComponent() {
                             <div>
                                 {record.article_link && <a href={record.article_link}>article link</a>}
                                 <br />
-                                {record.video_link && <a href={record.video_link}>video link</a>}
+                                {record.video_link &&  
+                                <video width="200" controls>
+                                    <source src={resoleVideo(record.video_link) + '&html5=True'} type="video/mp4" />
+                                    Your browser does not support HTML video.
+                                </video>
+                                }
                             </div> 
                         }
                     </div>
@@ -121,9 +128,7 @@ function SpaceXComponent() {
     })
 
     return (
-        <div>
-           <Table dataSource={dataSource} columns={columns} tableLayout="fixed" bordered/>
-        </div>
+        <Table dataSource={dataSource} columns={columns} tableLayout="fixed" bordered/>
     );
 }
 
