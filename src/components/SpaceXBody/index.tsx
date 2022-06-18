@@ -66,15 +66,12 @@ function SpaceXComponent() {
                             <div>
                                 {record.article_link && <a href={record.article_link}>article link</a>}
                                 <br />
-                                {record.video_link &&  
-                                <video width="200" controls>
-                                    <source src={resoleVideo(record.video_link) + '&html5=True'} type="video/mp4" />
-                                    Your browser does not support HTML video.
-                                </video>
+                                {record.video_link && 
+                                    <iframe width="160" height="120" src={resoleVideo(record.video_link) + '?autoplay=1'} ></iframe>
                                 }
                             </div> 
                         }
-                    </div>
+                    </div>  
                 )
             }
         },
